@@ -1,0 +1,5 @@
+{
+  "name": "Video Submission App",
+  "description": "A production-ready React Native app for video interview submission with glassmorphism UI and real-time recording.",
+  "requestFramePermissions": ["camera", "microphone"]
+}
