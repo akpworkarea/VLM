@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { useRouter } from 'expo-router';
 import Animated, { 
   useSharedValue, 
   useAnimatedStyle, 
@@ -41,6 +42,7 @@ const SUB_STEPS = [
 ];
 
 export default function OnboardingFlowScreen() {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   
   // Form Data
@@ -92,6 +94,7 @@ export default function OnboardingFlowScreen() {
       handleStepChange(currentStep + 1);
     } else {
       console.log('Final Submission:', formData);
+      router.push('/teacher/interview-scheduling');
     }
   };
 
@@ -176,10 +179,10 @@ export default function OnboardingFlowScreen() {
 
   return (
     <ScreenWrapper footer={Footer}>
-      <PageHeader subtitle="QUALIFICATION DETAILS" />
+      <PageHeader subtitle="TEACHING PREFERENCES" />
       <StepIndicator 
         currentStep={4} 
-        totalSteps={5} 
+        totalSteps={7} 
       />
       
       <View style={styles.stepContainer}>

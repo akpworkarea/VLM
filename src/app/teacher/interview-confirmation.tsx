@@ -54,7 +54,7 @@ export default function InterviewConfirmationScreen() {
 
   return (
     <ScreenWrapper footer={Footer}>
-      <PageHeader subtitle="INTERVIEW CONFIRMATION" />
+      <PageHeader subtitle="INTERVIEW CONFIRMATION" showBack={false} />
       
       <View style={styles.content}>
         {/* Status Icon */}

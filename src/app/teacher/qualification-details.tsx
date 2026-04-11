@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { useRouter } from 'expo-router';
 import Animated, { 
   useSharedValue, 
   useAnimatedStyle, 
@@ -24,6 +25,7 @@ import { normalize } from '@/src/utils/responsive';
 import { glassStyles } from '@/src/theme/glassStyles';
 
 export default function QualificationDetailsScreen() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     highestQualification: '',
     instituteName: '',
@@ -64,6 +66,7 @@ export default function QualificationDetailsScreen() {
 
   const handleContinue = () => {
     console.log('Qualification Details Submitted:', formData);
+    router.push('/teacher/experience-details');
   };
 
   const Footer = (
@@ -78,7 +81,7 @@ export default function QualificationDetailsScreen() {
   return (
     <ScreenWrapper footer={Footer}>
       <PageHeader subtitle="QUALIFICATION DETAILS" />
-      <StepIndicator currentStep={2} totalSteps={5} />
+      <StepIndicator currentStep={2} totalSteps={7} />
       
       <GlassCard delay={300} style={styles.mainCard}>
         <Text style={styles.cardTitle}>Educational Background</Text>

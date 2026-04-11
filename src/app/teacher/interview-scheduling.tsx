@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, ScrollView, Platform } from 'react-native';
+import { useRouter } from 'expo-router';
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Edit3, FileClock } from 'lucide-react-native';
 import { Calendar } from 'react-native-calendars';
 import { format, parseISO } from 'date-fns';
@@ -8,12 +9,14 @@ import { PageHeader } from '@/src/components/layout/PageHeader';
 import { GlassCard } from '@/src/components/ui/GlassCard';
 import { Button } from '@/src/components/ui/Button';
 import { TimeSlotChip } from '@/src/components/ui/TimeSlotChip';
+import { StepIndicator } from '@/src/components/ui/StepIndicator';
 import { normalize } from '@/src/utils/responsive';
 import { COLORS } from '@/src/constants/colors';
 import { useSchedule } from '@/src/hooks/useSchedule';
 import { useFadeIn, useSlideUp } from '@/src/hooks/useAnimation';
 
 export default function InterviewSchedulingScreen() {
+  const router = useRouter();
   const today = useMemo(() => format(new Date(), 'yyyy-MM-dd'), []);
   const [selectedDate, setSelectedDate] = useState(today);
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
@@ -43,6 +46,7 @@ export default function InterviewSchedulingScreen() {
   const handleSchedule = () => {
     if (!selectedSlotId) return;
     console.log('Scheduling interview for:', selectedDate, 'at slot:', selectedSlotId);
+    router.push('/teacher/video-submission');
   };
 
   const Footer = (
@@ -56,6 +60,7 @@ export default function InterviewSchedulingScreen() {
   return (
     <ScreenWrapper footer={Footer} noPadding>
       <PageHeader subtitle="INTERVIEW SCHEDULING" />
+      <StepIndicator currentStep={5} totalSteps={7} />
       
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView, TextInput } from 'react-native';
+import { useRouter } from 'expo-router';
 import Animated, { 
   useSharedValue, 
   useAnimatedStyle, 
@@ -22,6 +23,7 @@ import { normalize } from '@/src/utils/responsive';
 import { glassStyles } from '@/src/theme/glassStyles';
 
 export default function ExperienceDetailsScreen() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     years: 5,
     months: 8,
@@ -79,6 +81,7 @@ export default function ExperienceDetailsScreen() {
 
   const handleSave = () => {
     console.log('Experience Details Saved:', formData);
+    router.push('/teacher/onboarding-flow');
   };
 
   const Footer = (
@@ -105,7 +108,7 @@ export default function ExperienceDetailsScreen() {
   return (
     <ScreenWrapper footer={Footer}>
       <PageHeader subtitle="EXPERIENCE DETAILS" />
-      <StepIndicator currentStep={3} totalSteps={5} />
+      <StepIndicator currentStep={3} totalSteps={7} />
       
       <AnimatedCardWrapper delay={300}>
         <GlassCard noPadding>

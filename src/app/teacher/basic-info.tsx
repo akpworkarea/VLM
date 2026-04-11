@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Platform } from 'react-native';
+import { useRouter } from 'expo-router';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
 import { PageHeader } from '@/src/components/layout/PageHeader';
 import { StepIndicator } from '@/src/components/ui/StepIndicator';
@@ -24,6 +25,7 @@ import { COLORS } from '@/src/constants/colors';
 import { glassStyles } from '@/src/theme/glassStyles';
 
 export default function BasicInfoScreen() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: '',
     gender: '',
@@ -44,6 +46,7 @@ export default function BasicInfoScreen() {
 
   const handleContinue = () => {
     console.log('Form Submitted:', formData);
+    router.push('/teacher/qualification-details');
   };
 
   const Footer = (
@@ -57,11 +60,11 @@ export default function BasicInfoScreen() {
 
   return (
     <ScreenWrapper footer={Footer}>
-      <PageHeader subtitle="BASIC INFO" />
-      <StepIndicator currentStep={1} totalSteps={5} />
+      <PageHeader subtitle="BASIC INFO" showBack={false} />
+      <StepIndicator currentStep={1} totalSteps={7} />
       
       <GlassCard delay={300} style={styles.mainCard}>
-        <Text style={styles.cardTitle}>Basic Profile Details <Text style={styles.stepText}>(Step 1 of 5)</Text></Text>
+        <Text style={styles.cardTitle}>Basic Profile Details <Text style={styles.stepText}>(Step 1 of 7)</Text></Text>
         <Text style={styles.cardSubtitle}>Complete your personal details.</Text>
         
         <View style={styles.topSection}>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
 import { Info, ArrowRight } from 'lucide-react-native';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
 import { PageHeader } from '@/src/components/layout/PageHeader';
@@ -19,6 +20,7 @@ import { ENDPOINTS } from '@/src/services/endpoints';
 import { StepIndicator } from '@/src/components/ui/StepIndicator';
 
 export default function VideoSubmissionScreen() {
+  const router = useRouter();
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   
@@ -47,7 +49,7 @@ export default function VideoSubmissionScreen() {
       console.log('Submitting video for subject:', selectedSubject);
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      Alert.alert('Success', 'Your video has been submitted for review!');
+      router.push('/teacher/profile-review');
     } catch (error) {
       Alert.alert('Error', 'Failed to submit video. Please try again.');
     } finally {
@@ -70,7 +72,7 @@ export default function VideoSubmissionScreen() {
       <PageHeader subtitle="VIDEO SUBMISSION" />
       
       <View style={styles.content}>
-        <StepIndicator currentStep={5} totalSteps={5} />
+        <StepIndicator currentStep={6} totalSteps={7} />
 
         {/* Instructions Card */}
         <GlassCard delay={200} style={styles.card}>

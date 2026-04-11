@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { useRouter } from 'expo-router';
 import { 
   User, 
   Mail, 
@@ -22,6 +23,7 @@ import { PageHeader } from '@/src/components/layout/PageHeader';
 import { InfoCard } from '@/src/components/ui/InfoCard';
 import { ListItem } from '@/src/components/ui/ListItem';
 import { StatusBadge } from '@/src/components/ui/StatusBadge';
+import { StepIndicator } from '@/src/components/ui/StepIndicator';
 import { Button } from '@/src/components/ui/Button';
 import { useProfile } from '@/src/hooks/useProfile';
 import { COLORS } from '@/src/constants/colors';
@@ -29,6 +31,7 @@ import { normalize } from '@/src/utils/responsive';
 import { TYPOGRAPHY } from '@/src/constants/typography';
 
 export default function ProfileReviewScreen() {
+  const router = useRouter();
   const { profile, loading, submitVerification } = useProfile();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -38,7 +41,7 @@ export default function ProfileReviewScreen() {
     setIsSubmitting(false);
     
     if (result.success) {
-      Alert.alert('Success', 'Profile submitted for verification!');
+      router.push('/teacher/interview-confirmation');
     } else {
       Alert.alert('Error', result.error || 'Something went wrong');
     }
@@ -70,6 +73,7 @@ export default function ProfileReviewScreen() {
   return (
     <ScreenWrapper footer={Footer}>
       <PageHeader subtitle="PROFILE REVIEW & FINAL SUBMIT" />
+      <StepIndicator currentStep={7} totalSteps={7} />
       <View style={styles.content}>
         {/* Profile Details */}
         <InfoCard title="Profile Details" onEdit={() => {}} delay={100} style={styles.fullWidthCard}>
