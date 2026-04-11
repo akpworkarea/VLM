@@ -12,6 +12,7 @@ interface GlassCardProps {
   noPadding?: boolean;
   style?: StyleProp<ViewStyle>;
   intensity?: number;
+  glow?: boolean;
 }
 
 export const GlassCard = ({ 
@@ -19,12 +20,18 @@ export const GlassCard = ({
   delay = 0, 
   noPadding = false, 
   style,
-  intensity = GLASS_CONFIG.intensity 
+  intensity = GLASS_CONFIG.intensity,
+  glow = false
 }: GlassCardProps) => {
   const slideStyle = useSlideUp(delay);
 
   return (
-    <Animated.View style={[glassStyles.container, slideStyle, style]}>
+    <Animated.View style={[
+      glassStyles.container, 
+      slideStyle, 
+      glow && glassStyles.glow,
+      style
+    ]}>
       <BlurView 
         intensity={intensity} 
         tint={GLASS_CONFIG.tint} 

@@ -11,11 +11,17 @@ export const COLORS = {
   textSecondary: 'rgba(255, 255, 255, 0.6)',
   cyan: '#22D3EE',
   purple: '#A855F7',
+  yellow: '#EAB308',
   error: '#EF4444',
   success: '#10B981',
+  red: '#EF4444',
+  redDark: '#B91C1C',
+  orange: '#F97316',
   glow: {
     blue: 'rgba(59, 130, 246, 0.5)',
     cyan: 'rgba(34, 211, 238, 0.5)',
     purple: 'rgba(168, 85, 247, 0.5)',
+    red: 'rgba(239, 68, 68, 0.5)',
+    orange: 'rgba(249, 115, 22, 0.5)',
   }
 };

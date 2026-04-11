@@ -10,5 +10,8 @@ export const ENDPOINTS = {
   GET_DOCUMENTS: '/documents',
   GET_INTERVIEW: '/interview',
   JOIN_INTERVIEW: '/interview/join',
+  GET_VERIFICATION_STATUS: '/verification/status',
+  GET_REJECTION_STATUS: '/application/rejection',
+  REAPPLY: '/application/reapply',
 };
 

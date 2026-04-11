@@ -35,6 +35,19 @@ export const glassStyles = StyleSheet.create({
   inputFocused: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderColor: 'rgba(99, 102, 241, 0.5)', // COLORS.primary with opacity
+  },
+  glow: {
+    ...Platform.select({
+      ios: {
+        shadowColor: '#22d3ee',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.3,
+        shadowRadius: 15,
+      },
+      android: {
+        elevation: 10,
+      },
+    }),
   }
 });
 

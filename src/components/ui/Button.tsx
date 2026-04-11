@@ -9,7 +9,7 @@ import { TYPOGRAPHY } from '@/src/constants/typography';
 interface ButtonProps {
   text: string;
   onPress: () => void;
-  variant?: 'primary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'outline' | 'ghost' | 'danger';
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   icon?: React.ReactNode;
@@ -50,7 +50,11 @@ export const Button = ({
       ) : (
         <>
           {iconPosition === 'left' && icon}
-          <Text style={[styles.text, textStyle, variant === 'outline' && styles.outlineText]}>
+          <Text 
+            style={[styles.text, textStyle, variant === 'outline' && styles.outlineText]}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+          >
             {text}
           </Text>
           {iconPosition === 'right' && icon}
@@ -59,7 +63,11 @@ export const Button = ({
     </>
   );
 
-  if (variant === 'primary') {
+  if (variant === 'primary' || variant === 'danger') {
+    const gradientColors = variant === 'danger' 
+      ? [COLORS.red, COLORS.redDark] 
+      : [COLORS.primary, COLORS.secondary];
+
     return (
       <TouchableOpacity
         activeOpacity={0.8}
@@ -69,9 +77,15 @@ export const Button = ({
         disabled={disabled || loading}
         style={[styles.touchable, (disabled || loading) && { opacity: 0.5 }]}
       >
-        <Animated.View style={[styles.container, styles.glow, animatedStyle, style]}>
+        <Animated.View style={[
+          styles.container, 
+          styles.glow, 
+          variant === 'danger' && styles.dangerGlow,
+          animatedStyle, 
+          style
+        ]}>
           <LinearGradient
-            colors={[COLORS.primary, COLORS.secondary]}
+            colors={gradientColors}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
             style={styles.gradient}
@@ -116,6 +130,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: normalize(8),
     overflow: 'hidden',
+    paddingHorizontal: normalize(20),
   },
   gradient: {
     ...StyleSheet.absoluteFillObject,
@@ -132,6 +147,9 @@ const styles = StyleSheet.create({
   text: {
     ...TYPOGRAPHY.button,
     color: COLORS.text,
+    textAlign: 'center',
+    flex: 1,
+    paddingHorizontal: normalize(4),
   },
   outlineText: {
     color: COLORS.text,
@@ -142,5 +160,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 10,
     elevation: 8,
+  },
+  dangerGlow: {
+    shadowColor: COLORS.red,
   },
 });

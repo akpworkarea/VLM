@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 import { 
   Calendar, 
   Clock, 
@@ -7,7 +8,8 @@ import {
   Hash, 
   ShieldCheck,
   Info,
-  ArrowRight
+  ArrowRight,
+  ClipboardList
 } from 'lucide-react-native';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
 import { PageHeader } from '@/src/components/layout/PageHeader';
@@ -22,6 +24,7 @@ import { normalize, wp, scale } from '@/src/utils/responsive';
 import { TYPOGRAPHY } from '@/src/constants/typography';
 
 export default function InterviewConfirmationScreen() {
+  const router = useRouter();
   const { interview, loading, joinInterview } = useInterview();
 
   if (loading && !interview) {
@@ -45,6 +48,13 @@ export default function InterviewConfirmationScreen() {
         icon={<Video size={normalize(20)} color="white" />}
         disabled={interview.status !== 'scheduled'}
       />
+      <TouchableOpacity 
+        style={styles.statusLink}
+        onPress={() => router.push('/teacher/verification-status')}
+      >
+        <ClipboardList size={normalize(16)} color={COLORS.cyan} />
+        <Text style={styles.statusLinkText}>View Application Progress</Text>
+      </TouchableOpacity>
       <Text style={styles.footerNote}>
         Button active 15 mins before start time.{"\n"}
         Confirmation email sent. Verification ongoing.
@@ -175,5 +185,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: normalize(11),
     lineHeight: normalize(16),
+  },
+  statusLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: normalize(8),
+    marginTop: normalize(4),
+  },
+  statusLinkText: {
+    ...TYPOGRAPHY.body,
+    color: COLORS.cyan,
+    fontSize: normalize(14),
+    fontWeight: '600',
   },
 });

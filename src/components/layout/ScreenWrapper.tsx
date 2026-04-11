@@ -1,23 +1,26 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, StatusBar } from 'react-native';
+import { StyleSheet, View, ScrollView, SafeAreaView, StatusBar, ViewStyle, StyleProp } from 'react-native';
 import { Background } from '@/src/components/background';
 import { normalize } from '@/src/utils/responsive';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface ScreenWrapperProps {
-  children: React.ReactNode;
   footer?: React.ReactNode;
   noPadding?: boolean;
+  contentContainerStyle?: StyleProp<ViewStyle>;
 }
 
-export const ScreenWrapper = ({ children, footer, noPadding }: ScreenWrapperProps) => {
+export const ScreenWrapper = ({ children, footer, noPadding, contentContainerStyle }: React.PropsWithChildren<ScreenWrapperProps>) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <Background />
       <SafeAreaView style={styles.safeArea}>
         <ScrollView 
-          contentContainerStyle={[styles.scrollContent, noPadding && { padding: 0 }]}
+          contentContainerStyle={[
+            styles.scrollContent, 
+            noPadding && { padding: 0 },
+            contentContainerStyle
+          ]}
           showsVerticalScrollIndicator={false}
         >
           {children}
