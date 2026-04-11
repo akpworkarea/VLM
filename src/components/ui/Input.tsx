@@ -21,6 +21,8 @@ interface InputProps {
   keyboardType?: KeyboardTypeOptions;
   onPress?: () => void;
   editable?: boolean;
+  maxLength?: number;
+  style?: any;
 }
 
 export const Input = ({ 
@@ -33,7 +35,9 @@ export const Input = ({
   icon,
   keyboardType,
   onPress,
-  editable = true
+  editable = true,
+  maxLength,
+  style
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const focusAnim = useSharedValue(0);
@@ -76,7 +80,7 @@ export const Input = ({
         <Animated.View style={[styles.inputContainer, animatedContainerStyle, animatedGlowStyle]}>
           {icon && <View style={styles.iconContainer}>{icon}</View>}
           <TextInput
-            style={styles.input}
+            style={[styles.input, style]}
             value={value}
             onChangeText={onChangeText}
             placeholder={placeholder}
@@ -87,6 +91,7 @@ export const Input = ({
             keyboardType={keyboardType}
             editable={editable && !onPress}
             pointerEvents={onPress ? 'none' : 'auto'}
+            maxLength={maxLength}
           />
         </Animated.View>
       </InputComponent>

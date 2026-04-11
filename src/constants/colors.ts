@@ -23,5 +23,6 @@ export const COLORS = {
     purple: 'rgba(168, 85, 247, 0.5)',
     red: 'rgba(239, 68, 68, 0.5)',
     orange: 'rgba(249, 115, 22, 0.5)',
+    yellow: 'rgba(234, 179, 8, 0.5)',
   }
 };

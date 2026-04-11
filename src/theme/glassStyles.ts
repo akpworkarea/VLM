@@ -48,6 +48,20 @@ export const glassStyles = StyleSheet.create({
         elevation: 10,
       },
     }),
+  },
+  glowYellow: {
+    ...Platform.select({
+      ios: {
+        shadowColor: '#EAB308',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.5,
+        shadowRadius: 20,
+      },
+      android: {
+        elevation: 12,
+      },
+    }),
+    borderColor: '#EAB308',
   }
 });
 
