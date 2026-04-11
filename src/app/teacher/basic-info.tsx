@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Modal, TouchableOpacity, Platform } from 'react-native';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
-import { Header } from '@/src/components/layout/Header';
+import { PageHeader } from '@/src/components/layout/PageHeader';
 import { StepIndicator } from '@/src/components/ui/StepIndicator';
 import { GlassCard } from '@/src/components/ui/GlassCard';
 import { AvatarUpload } from '@/src/components/ui/AvatarUpload';
@@ -16,10 +16,12 @@ import {
   Calendar, 
   Users, 
   Building, 
-  Hash 
+  Hash,
+  ArrowRight
 } from 'lucide-react-native';
 import { normalize } from '@/src/utils/responsive';
 import { COLORS } from '@/src/constants/colors';
+import { glassStyles } from '@/src/theme/glassStyles';
 
 export default function BasicInfoScreen() {
   const [formData, setFormData] = useState({
@@ -46,14 +48,16 @@ export default function BasicInfoScreen() {
 
   const Footer = (
     <Button 
-      text="Continue to document >" 
+      text="CONTINUE TO DOCUMENTS" 
       onPress={handleContinue} 
+      icon={<ArrowRight size={normalize(20)} color="white" />}
+      iconPosition="right"
     />
   );
 
   return (
     <ScreenWrapper footer={Footer}>
-      <Header />
+      <PageHeader subtitle="BASIC INFO" />
       <StepIndicator currentStep={1} totalSteps={5} />
       
       <GlassCard delay={300} style={styles.mainCard}>
@@ -234,11 +238,8 @@ const styles = StyleSheet.create({
     marginBottom: normalize(12),
   },
   cityStateGroup: {
+    ...glassStyles.input,
     flex: 1.8,
-    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-    borderRadius: normalize(16),
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
     padding: normalize(12),
     marginRight: normalize(10),
   },

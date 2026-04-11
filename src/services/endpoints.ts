@@ -8,5 +8,7 @@ export const ENDPOINTS = {
   GET_PROFILE: '/profile',
   SUBMIT_VERIFICATION: '/profile/submit',
   GET_DOCUMENTS: '/documents',
+  GET_INTERVIEW: '/interview',
+  JOIN_INTERVIEW: '/interview/join',
 };
 

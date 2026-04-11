@@ -9,7 +9,7 @@ import Animated, {
   withSpring
 } from 'react-native-reanimated';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
-import { Header } from '@/src/components/layout/Header';
+import { PageHeader } from '@/src/components/layout/PageHeader';
 import { StepIndicator } from '@/src/components/ui/StepIndicator';
 import { GlassCard } from '@/src/components/ui/GlassCard';
 import { Input } from '@/src/components/ui/Input';
@@ -18,9 +18,10 @@ import { Button } from '@/src/components/ui/Button';
 import { ToggleSwitch } from '@/src/components/ui/ToggleSwitch';
 import { FileUploadGrid } from '@/src/components/ui/FileUploadGrid';
 import * as ImagePicker from 'expo-image-picker';
-import { GraduationCap, School, Calendar, Award, FileUp } from 'lucide-react-native';
+import { GraduationCap, School, Calendar, Award, FileUp, ArrowRight } from 'lucide-react-native';
 import { COLORS } from '@/src/constants/colors';
 import { normalize } from '@/src/utils/responsive';
+import { glassStyles } from '@/src/theme/glassStyles';
 
 export default function QualificationDetailsScreen() {
   const [formData, setFormData] = useState({
@@ -67,14 +68,16 @@ export default function QualificationDetailsScreen() {
 
   const Footer = (
     <Button 
-      text="Continue >" 
+      text="CONTINUE" 
       onPress={handleContinue} 
+      icon={<ArrowRight size={normalize(20)} color="white" />}
+      iconPosition="right"
     />
   );
 
   return (
     <ScreenWrapper footer={Footer}>
-      <Header title="Qualification Details" />
+      <PageHeader subtitle="QUALIFICATION DETAILS" />
       <StepIndicator currentStep={2} totalSteps={5} />
       
       <GlassCard delay={300} style={styles.mainCard}>
@@ -199,13 +202,10 @@ const styles = StyleSheet.create({
     marginHorizontal: normalize(20),
   },
   toggleContainer: {
+    ...glassStyles.input,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-    borderRadius: normalize(16),
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
     paddingHorizontal: normalize(16),
     height: normalize(68),
     marginBottom: normalize(16),

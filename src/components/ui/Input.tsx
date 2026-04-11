@@ -8,6 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { COLORS } from '@/src/constants/colors';
 import { normalize } from '@/src/utils/responsive';
+import { glassStyles } from '@/src/theme/glassStyles';
 
 interface InputProps {
   label: string;
@@ -106,11 +107,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   inputContainer: {
+    ...glassStyles.input,
     flexDirection: 'row',
     alignItems: 'center',
     height: normalize(56),
-    borderRadius: normalize(16),
-    borderWidth: 1,
     paddingHorizontal: normalize(16),
     shadowColor: COLORS.primary,
     shadowOffset: { width: 0, height: 0 },

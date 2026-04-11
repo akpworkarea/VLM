@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Modal, FlatList } from 'react
 import { ChevronDown } from 'lucide-react-native';
 import { COLORS } from '@/src/constants/colors';
 import { normalize } from '@/src/utils/responsive';
+import { glassStyles } from '@/src/theme/glassStyles';
 
 interface Option {
   label: string;
@@ -79,14 +80,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   dropdown: {
+    ...glassStyles.input,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     height: normalize(56),
-    borderRadius: normalize(16),
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
     paddingHorizontal: normalize(16),
   },
   valueText: {
@@ -103,9 +101,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalContent: {
+    ...glassStyles.container,
     width: '80%',
     backgroundColor: '#1e1b4b',
-    borderRadius: normalize(20),
     padding: normalize(10),
     maxHeight: '50%',
   },

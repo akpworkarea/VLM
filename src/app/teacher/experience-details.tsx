@@ -9,16 +9,17 @@ import Animated, {
   withSpring
 } from 'react-native-reanimated';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
-import { Header } from '@/src/components/layout/Header';
+import { PageHeader } from '@/src/components/layout/PageHeader';
 import { StepIndicator } from '@/src/components/ui/StepIndicator';
 import { GlassCard } from '@/src/components/ui/GlassCard';
 import { Button } from '@/src/components/ui/Button';
 import { StepperSelector } from '@/src/components/ui/StepperSelector';
 import { ChipGroup } from '@/src/components/ui/ChipGroup';
 import { UploadBox } from '@/src/components/ui/UploadBox';
-import { Monitor, Users, Layers, GraduationCap, Home, Globe } from 'lucide-react-native';
+import { Monitor, Users, Layers, GraduationCap, Home, Globe, ArrowRight } from 'lucide-react-native';
 import { COLORS } from '@/src/constants/colors';
 import { normalize } from '@/src/utils/responsive';
+import { glassStyles } from '@/src/theme/glassStyles';
 
 export default function ExperienceDetailsScreen() {
   const [formData, setFormData] = useState({
@@ -84,7 +85,8 @@ export default function ExperienceDetailsScreen() {
     <Button 
       text="SAVE & CONTINUE" 
       onPress={handleSave} 
-      icon={true}
+      icon={<ArrowRight size={normalize(20)} color="white" />}
+      iconPosition="right"
     />
   );
 
@@ -102,7 +104,7 @@ export default function ExperienceDetailsScreen() {
 
   return (
     <ScreenWrapper footer={Footer}>
-      <Header title="Experience Details" />
+      <PageHeader subtitle="EXPERIENCE DETAILS" />
       <StepIndicator currentStep={3} totalSteps={5} />
       
       <AnimatedCardWrapper delay={300}>
@@ -233,10 +235,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   inputContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-    borderRadius: normalize(16),
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
+    ...glassStyles.input,
     padding: normalize(12),
     minHeight: normalize(100),
   },

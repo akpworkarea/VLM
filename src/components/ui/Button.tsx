@@ -13,6 +13,7 @@ interface ButtonProps {
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
   disabled?: boolean;
   loading?: boolean;
 }
@@ -24,6 +25,7 @@ export const Button = ({
   style, 
   textStyle, 
   icon, 
+  iconPosition = 'left',
   disabled,
   loading 
 }: ButtonProps) => {
@@ -47,10 +49,11 @@ export const Button = ({
         <ActivityIndicator color="white" />
       ) : (
         <>
+          {iconPosition === 'left' && icon}
           <Text style={[styles.text, textStyle, variant === 'outline' && styles.outlineText]}>
             {text}
           </Text>
-          {icon}
+          {iconPosition === 'right' && icon}
         </>
       )}
     </>

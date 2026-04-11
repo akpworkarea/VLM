@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Edit3, FileClock }
 import { Calendar } from 'react-native-calendars';
 import { format, parseISO } from 'date-fns';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
-import { Header } from '@/src/components/layout/Header';
+import { PageHeader } from '@/src/components/layout/PageHeader';
 import { GlassCard } from '@/src/components/ui/GlassCard';
 import { Button } from '@/src/components/ui/Button';
 import { TimeSlotChip } from '@/src/components/ui/TimeSlotChip';
@@ -43,7 +43,6 @@ export default function InterviewSchedulingScreen() {
   const handleSchedule = () => {
     if (!selectedSlotId) return;
     console.log('Scheduling interview for:', selectedDate, 'at slot:', selectedSlotId);
-    alert(`Interview scheduled on ${formattedSelectedDate} at slot ID: ${selectedSlotId}`);
   };
 
   const Footer = (
@@ -56,27 +55,9 @@ export default function InterviewSchedulingScreen() {
 
   return (
     <ScreenWrapper footer={Footer} noPadding>
-
+      <PageHeader subtitle="INTERVIEW SCHEDULING" />
       
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <Header title="VLM Academy" />
-        
-        <View style={styles.titleContainer}>
-          <View style={styles.titleRow}>
-            <Text style={styles.mainTitle}>INTERVIEW SCHEDULING</Text> 
-          </View>
-          <View style={styles.iconAndDateRow}>
-          <View style={styles.dateBadge}>
-              <Text style={styles.dateBadgeText}>{shortDate}</Text>
-          </View>
-          <View style={styles.iconContainer}>
-              <View style={styles.interviewIcon}>
-                <View style={styles.iconCircle} />
-                <View style={styles.iconCircle} />
-              </View>
-            </View>
-           </View>
-        </View>
 
         {/* Calendar Card */}
         <View>
@@ -185,7 +166,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     paddingHorizontal: normalize(20),
-    marginVertical: normalize(1),
+    marginVertical: normalize(14),
   },
   mainTitle: {
     color: '#fff',
@@ -308,12 +289,11 @@ const styles = StyleSheet.create({
   },
   selectedDateLabel: {
     color: 'rgba(255,255,255,0.6)',
-    fontWeight: '400',
-    fontSize: normalize(11.7),
+    fontSize: normalize(12),
   },
   boldText: {
     color: '#fff',
-    fontWeight: '500',
+    fontWeight: '700',
   },
   calendarSmallIcon: {
     width: normalize(24),

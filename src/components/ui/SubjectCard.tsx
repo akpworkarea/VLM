@@ -5,6 +5,7 @@ import Animated, { useAnimatedStyle, withSpring, useSharedValue } from 'react-na
 import { COLORS } from '@/src/constants/colors';
 import { normalize } from '@/src/utils/responsive';
 import { TYPOGRAPHY } from '@/src/constants/typography';
+import { glassStyles } from '@/src/theme/glassStyles';
 
 interface SubjectCardProps {
   id: string;
@@ -66,9 +67,8 @@ const styles = StyleSheet.create({
     aspectRatio: 0.85,
   },
   card: {
+    ...glassStyles.input,
     flex: 1,
-    borderRadius: normalize(16),
-    borderWidth: 1.5,
     justifyContent: 'center',
     alignItems: 'center',
     gap: normalize(8),

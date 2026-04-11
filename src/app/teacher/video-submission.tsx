@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 import { Info, ArrowRight } from 'lucide-react-native';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
-import { Header } from '@/src/components/layout/Header';
+import { PageHeader } from '@/src/components/layout/PageHeader';
 import { GlassCard } from '@/src/components/ui/GlassCard';
 import { VideoPreview } from '@/src/components/ui/VideoPreview';
 import { SubjectCard } from '@/src/components/ui/SubjectCard';
@@ -61,12 +61,13 @@ export default function VideoSubmissionScreen() {
       onPress={handleSubmit}
       disabled={!video || !selectedSubject || isSubmitting}
       icon={<ArrowRight size={normalize(20)} color="white" />}
+      iconPosition="right"
     />
   );
 
   return (
     <ScreenWrapper footer={Footer}>
-      <Header />
+      <PageHeader subtitle="VIDEO SUBMISSION" />
       
       <View style={styles.content}>
         <StepIndicator currentStep={5} totalSteps={5} />

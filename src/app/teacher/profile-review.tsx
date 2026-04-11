@@ -17,7 +17,7 @@ import {
   ArrowRight
 } from 'lucide-react-native';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
-import { Header } from '@/src/components/layout/Header';
+import { PageHeader } from '@/src/components/layout/PageHeader';
 
 import { InfoCard } from '@/src/components/ui/InfoCard';
 import { ListItem } from '@/src/components/ui/ListItem';
@@ -47,7 +47,7 @@ export default function ProfileReviewScreen() {
   if (loading && !profile) {
     return (
       <ScreenWrapper>
-        <Header />
+        <PageHeader subtitle="PROFILE REVIEW & FINAL SUBMIT" />
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={COLORS.primary} />
         </View>
@@ -63,17 +63,13 @@ export default function ProfileReviewScreen() {
       onPress={handleSubmit}
       loading={isSubmitting}
       icon={<ArrowRight size={normalize(20)} color="white" />}
+      iconPosition="right"
     />
   );
 
   return (
     <ScreenWrapper footer={Footer}>
-      <Header />
-      <View style={styles.subtitleRow}>
-        <Text style={styles.pageSubtitle}>
-          PROFILE REVIEW & FINAL SUBMIT
-        </Text>
-        </View>
+      <PageHeader subtitle="PROFILE REVIEW & FINAL SUBMIT" />
       <View style={styles.content}>
         {/* Profile Details */}
         <InfoCard title="Profile Details" onEdit={() => {}} delay={100} style={styles.fullWidthCard}>

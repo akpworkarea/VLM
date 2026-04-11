@@ -13,8 +13,9 @@ import Animated, {
 import { BlurView } from 'expo-blur';
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
+import { ArrowRight } from 'lucide-react-native';
 import { ScreenWrapper } from '@/src/components/layout/ScreenWrapper';
-import { Header } from '@/src/components/teacher-logo/logo';
+import { PageHeader } from '@/src/components/layout/PageHeader';
 import { StepIndicator } from '@/src/components/ui/StepIndicator';
 import { Button } from '@/src/components/ui/Button';
 import { normalize } from '@/src/utils/responsive';
@@ -168,12 +169,14 @@ export default function OnboardingFlowScreen() {
     <Button 
       text={currentStep === SUB_STEPS.length - 1 ? "SUBMIT FOR VERIFICATION" : "CONTINUE"} 
       onPress={handleContinue} 
+      icon={<ArrowRight size={normalize(20)} color="white" />}
+      iconPosition="right"
     />
   );
 
   return (
     <ScreenWrapper footer={Footer}>
-      <Header title="VLM Academy" />
+      <PageHeader subtitle="QUALIFICATION DETAILS" />
       <StepIndicator 
         currentStep={4} 
         totalSteps={5} 
