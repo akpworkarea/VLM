@@ -9,13 +9,14 @@ import { TYPOGRAPHY } from '@/src/constants/typography';
 interface ButtonProps {
   text: string;
   onPress: () => void;
-  variant?: 'primary' | 'outline' | 'ghost' | 'danger';
+  variant?: 'primary' | 'outline' | 'ghost' | 'danger' | 'warning';
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   disabled?: boolean;
   loading?: boolean;
+  glow?: boolean;
 }
 
 export const Button = ({ 
@@ -27,7 +28,8 @@ export const Button = ({
   icon, 
   iconPosition = 'left',
   disabled,
-  loading 
+  loading,
+  glow = true
 }: ButtonProps) => {
   const scale = useSharedValue(1);
 
@@ -63,10 +65,10 @@ export const Button = ({
     </>
   );
 
-  if (variant === 'primary' || variant === 'danger') {
-    const gradientColors = variant === 'danger' 
-      ? [COLORS.red, COLORS.redDark] 
-      : [COLORS.primary, COLORS.secondary];
+  if (variant === 'primary' || variant === 'danger' || variant === 'warning') {
+    let gradientColors = [COLORS.primary, COLORS.secondary];
+    if (variant === 'danger') gradientColors = [COLORS.red, COLORS.redDark];
+    if (variant === 'warning') gradientColors = [COLORS.yellow, COLORS.orange];
 
     return (
       <TouchableOpacity
@@ -79,8 +81,9 @@ export const Button = ({
       >
         <Animated.View style={[
           styles.container, 
-          styles.glow, 
-          variant === 'danger' && styles.dangerGlow,
+          glow && styles.glow, 
+          variant === 'danger' && glow && styles.dangerGlow,
+          variant === 'warning' && glow && styles.warningGlow,
           animatedStyle, 
           style
         ]}>
@@ -156,12 +159,15 @@ const styles = StyleSheet.create({
   },
   glow: {
     shadowColor: COLORS.primary,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.5,
-    shadowRadius: 10,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.6,
+    shadowRadius: 15,
+    elevation: 12,
   },
   dangerGlow: {
     shadowColor: COLORS.red,
+  },
+  warningGlow: {
+    shadowColor: COLORS.yellow,
   },
 });

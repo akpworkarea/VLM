@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
-  GET_USER: '/user',
+   GET_USER: '/user',
   UPDATE_USER: '/user/update',
   GET_SLOTS: '/slots',
   UPLOAD_VIDEO: '/video/upload',
@@ -13,5 +13,8 @@ export const ENDPOINTS = {
   GET_VERIFICATION_STATUS: '/verification/status',
   GET_REJECTION_STATUS: '/application/rejection',
   REAPPLY: '/application/reapply',
+  CREATE_STUDENT_PROFILE: '/student/profile',
+  GET_PLANS: '/plans',
+  START_TRIAL: '/subscription/trial',
 };
 

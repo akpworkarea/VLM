@@ -41,27 +41,56 @@ export const glassStyles = StyleSheet.create({
       ios: {
         shadowColor: '#22d3ee',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 15,
+        shadowOpacity: 0.6,
+        shadowRadius: 25,
       },
       android: {
-        elevation: 10,
+        elevation: 15,
       },
     }),
+    borderColor: 'rgba(34, 211, 238, 0.5)',
   },
   glowYellow: {
     ...Platform.select({
       ios: {
         shadowColor: '#EAB308',
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.5,
-        shadowRadius: 20,
+        shadowOpacity: 0.6,
+        shadowRadius: 25,
       },
       android: {
-        elevation: 12,
+        elevation: 15,
       },
     }),
-    borderColor: '#EAB308',
+    borderColor: 'rgba(234, 179, 8, 0.5)',
+  },
+  glowRed: {
+    ...Platform.select({
+      ios: {
+        shadowColor: '#EF4444',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 25,
+      },
+      android: {
+        elevation: 15,
+      },
+    }),
+    borderColor: 'rgba(239, 68, 68, 0.5)',
+  },
+  glowPurple: {
+    ...Platform.select({
+      ios: {
+        shadowColor: '#A855F7',
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.6,
+        shadowRadius: 25,
+      },
+      android: {
+        elevation: 15,
+      },
+    }),
+    borderColor: 'rgba(168, 85, 247, 0.5)',
   }
 });
 

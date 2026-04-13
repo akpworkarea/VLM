@@ -11,7 +11,7 @@ import { normalize } from '@/src/utils/responsive';
 import { glassStyles } from '@/src/theme/glassStyles';
 
 interface InputProps {
-  label: string;
+  label?: string;
   value: string;
   onChangeText?: (text: string) => void;
   placeholder?: string;
@@ -23,6 +23,8 @@ interface InputProps {
   editable?: boolean;
   maxLength?: number;
   style?: any;
+  containerStyle?: any;
+  noLabel?: boolean;
 }
 
 export const Input = ({ 
@@ -37,7 +39,9 @@ export const Input = ({
   onPress,
   editable = true,
   maxLength,
-  style
+  style,
+  containerStyle,
+  noLabel = false
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const focusAnim = useSharedValue(0);
@@ -57,7 +61,7 @@ export const Input = ({
     borderColor: interpolateColor(
       focusAnim.value,
       [0, 1],
-      [COLORS.border, COLORS.primary]
+      ['rgba(255, 255, 255, 0.2)', COLORS.primary]
     ),
     backgroundColor: interpolateColor(
       focusAnim.value,
@@ -67,15 +71,15 @@ export const Input = ({
   }));
 
   const animatedGlowStyle = useAnimatedStyle(() => ({
-    opacity: focusAnim.value * 0.3,
+    shadowOpacity: focusAnim.value * 0.3,
     shadowRadius: focusAnim.value * 10,
   }));
 
   const InputComponent = onPress ? TouchableOpacity : View;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+    <View style={[styles.container, containerStyle]}>
+      {!noLabel && label && <Text style={styles.label}>{label}</Text>}
       <InputComponent onPress={onPress} activeOpacity={0.7}>
         <Animated.View style={[styles.inputContainer, animatedContainerStyle, animatedGlowStyle]}>
           {icon && <View style={styles.iconContainer}>{icon}</View>}

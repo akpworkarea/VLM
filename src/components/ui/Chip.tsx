@@ -1,72 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
-import Animated, { 
-  useSharedValue, 
-  useAnimatedStyle, 
-  withSpring, 
-  withTiming 
-} from 'react-native-reanimated';
-import { normalize } from '@/src/utils/responsive';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { COLORS } from '@/src/constants/colors';
+import { normalize } from '@/src/utils/responsive';
+import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated';
 
 interface ChipProps {
   label: string;
-  isSelected: boolean;
+  selected: boolean;
   onPress: () => void;
-  style?: ViewStyle;
 }
 
-export const Chip = ({ label, isSelected, onPress, style }: ChipProps) => {
-  const scale = useSharedValue(1);
-
+export const Chip: React.FC<ChipProps> = ({ label, selected, onPress }) => {
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
-    borderColor: withTiming(isSelected ? COLORS.primary : 'rgba(255, 255, 255, 0.1)', { duration: 300 }),
-    backgroundColor: withTiming(isSelected ? 'rgba(99, 102, 241, 0.2)' : 'rgba(255, 255, 255, 0.05)', { duration: 300 }),
+    backgroundColor: withSpring(selected ? COLORS.cyan + '33' : 'rgba(255,255,255,0.05)'),
+    borderColor: withSpring(selected ? COLORS.cyan : 'rgba(255,255,255,0.1)'),
+    transform: [{ scale: withSpring(selected ? 1.05 : 1) }]
   }));
 
-  const handlePressIn = () => {
-    scale.value = withSpring(0.95);
-  };
-
-  const handlePressOut = () => {
-    scale.value = withSpring(1);
-  };
-
   return (
-    <Animated.View style={[styles.container, animatedStyle, style]}>
-      <TouchableOpacity
-        activeOpacity={1}
-        onPress={onPress}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
-        style={styles.touchable}
-      >
-        <Text style={[styles.label, isSelected && styles.selectedLabel]}>{label}</Text>
-      </TouchableOpacity>
-    </Animated.View>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+      <Animated.View style={[styles.container, animatedStyle]}>
+        <Text style={[styles.label, selected && styles.selectedLabel]}>{label}</Text>
+      </Animated.View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: normalize(16),
+    paddingVertical: normalize(8),
     borderRadius: normalize(20),
     borderWidth: 1,
-    overflow: 'hidden',
     marginRight: normalize(8),
     marginBottom: normalize(8),
   },
-  touchable: {
-    paddingHorizontal: normalize(16),
-    paddingVertical: normalize(8),
-  },
   label: {
-    color: 'rgba(255, 255, 255, 0.6)',
-    fontSize: normalize(13),
-    fontWeight: '500',
+    color: 'rgba(255,255,255,0.6)',
+    fontSize: normalize(14),
   },
   selectedLabel: {
-    color: '#fff',
-    fontWeight: '700',
+    color: COLORS.cyan,
+    fontWeight: '600',
   },
 });

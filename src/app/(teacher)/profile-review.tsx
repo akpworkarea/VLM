@@ -41,7 +41,7 @@ export default function ProfileReviewScreen() {
     setIsSubmitting(false);
     
     if (result.success) {
-      router.push('/teacher/interview-confirmation');
+      router.push('/interview-confirmation');
     } else {
       Alert.alert('Error', result.error || 'Something went wrong');
     }
@@ -160,7 +160,7 @@ export default function ProfileReviewScreen() {
             <ListItem 
               key={doc.id} 
               label={doc.name} 
-              rightElement={<StatusBadge status={doc.status} />}
+              rightElement={<StatusBadge text={doc.status} type={doc.status === 'verified' ? 'success' : 'primary'} />}
             />
           ))}
         </InfoCard>

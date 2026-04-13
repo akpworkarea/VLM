@@ -12,10 +12,11 @@ import { normalize } from '@/src/utils/responsive';
 import { TYPOGRAPHY } from '@/src/constants/typography';
 
 interface StatusBadgeProps {
-  status: 'uploaded' | 'verified';
+  text: string;
+  type?: 'success' | 'primary' | 'warning' | 'error';
 }
 
-export const StatusBadge = ({ status }: StatusBadgeProps) => {
+export const StatusBadge = ({ text, type = 'primary' }: StatusBadgeProps) => {
   const opacity = useSharedValue(1);
 
   useEffect(() => {
@@ -33,13 +34,21 @@ export const StatusBadge = ({ status }: StatusBadgeProps) => {
     opacity: opacity.value,
   }));
 
-  const isVerified = status === 'verified';
-  const color = isVerified ? COLORS.success : COLORS.primary;
+  const getColor = () => {
+    switch (type) {
+      case 'success': return COLORS.success;
+      case 'warning': return COLORS.yellow;
+      case 'error': return COLORS.error;
+      default: return COLORS.primary;
+    }
+  };
+
+  const color = getColor();
 
   return (
     <View style={styles.container}>
       <Text style={[styles.text, { color }]}>
-        {status.charAt(0).toUpperCase() + status.slice(1)}
+        {text}
       </Text>
       <Animated.View 
         style={[

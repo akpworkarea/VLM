@@ -13,7 +13,7 @@ interface GlassCardProps {
   style?: StyleProp<ViewStyle>;
   intensity?: number;
   glow?: boolean;
-  glowType?: 'blue' | 'yellow';
+  glowType?: 'blue' | 'yellow' | 'red' | 'purple';
 }
 
 export const GlassCard = ({ 
@@ -25,14 +25,23 @@ export const GlassCard = ({
   glow = false,
   glowType = 'blue'
 }: GlassCardProps) => {
-  const slideStyle = useSlideUp(delay);
+  // const slideStyle = useSlideUp(delay);
 
-  const glowStyle = glowType === 'yellow' ? glassStyles.glowYellow : glassStyles.glow;
+  const getGlowStyle = () => {
+    switch (glowType) {
+      case 'yellow': return glassStyles.glowYellow;
+      case 'red': return glassStyles.glowRed;
+      case 'purple': return glassStyles.glowPurple;
+      default: return glassStyles.glow;
+    }
+  };
+
+  const glowStyle = getGlowStyle();
 
   return (
-    <Animated.View style={[
+    <View style={[
       glassStyles.container, 
-      slideStyle, 
+      // slideStyle, 
       glow && glowStyle,
       style
     ]}>
@@ -50,6 +59,6 @@ export const GlassCard = ({
       <View style={[glassStyles.content, noPadding && { padding: 0 }]}>
         {children}
       </View>
-    </Animated.View>
+    </View>
   );
 };

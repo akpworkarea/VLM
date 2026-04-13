@@ -7,24 +7,39 @@ interface ScreenWrapperProps {
   footer?: React.ReactNode;
   noPadding?: boolean;
   contentContainerStyle?: StyleProp<ViewStyle>;
+  scrollEnabled?: boolean;
 }
 
-export const ScreenWrapper = ({ children, footer, noPadding, contentContainerStyle }: React.PropsWithChildren<ScreenWrapperProps>) => {
+export const ScreenWrapper = ({ 
+  children, 
+  footer, 
+  noPadding, 
+  contentContainerStyle,
+  scrollEnabled = true 
+}: React.PropsWithChildren<ScreenWrapperProps>) => {
+  const content = scrollEnabled ? (
+    <ScrollView 
+      contentContainerStyle={[
+        styles.scrollContent, 
+        noPadding && { padding: 0 },
+        contentContainerStyle
+      ]}
+      showsVerticalScrollIndicator={false}
+    >
+      {children}
+    </ScrollView>
+  ) : (
+    <View style={[styles.flex, noPadding && { padding: 0 }, contentContainerStyle]}>
+      {children}
+    </View>
+  );
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <Background />
       <SafeAreaView style={styles.safeArea}>
-        <ScrollView 
-          contentContainerStyle={[
-            styles.scrollContent, 
-            noPadding && { padding: 0 },
-            contentContainerStyle
-          ]}
-          showsVerticalScrollIndicator={false}
-        >
-          {children}
-        </ScrollView>
+        {content}
         {footer && <View style={styles.footer}>{footer}</View>}
       </SafeAreaView>
     </View>
@@ -37,6 +52,9 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   safeArea: {
+    flex: 1,
+  },
+  flex: {
     flex: 1,
   },
   scrollContent: {

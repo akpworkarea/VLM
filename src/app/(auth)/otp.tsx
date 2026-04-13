@@ -24,7 +24,7 @@ export default function OTPScreen() {
           router.replace('/(teacher)/basic-info');
           break;
         case 'student':
-          router.replace('/(student)/onboarding');
+          router.replace('/(student)/onboarding-intro');
           break;
         case 'parent':
           router.replace('/(parent)/onboarding');

@@ -13,6 +13,10 @@ export const TYPOGRAPHY = {
     fontSize: normalize(18),
     fontWeight: '700' as const,
   },
+  h4: {
+    fontSize: normalize(14),
+    fontWeight: '600' as const,
+  },
   body: {
     fontSize: normalize(16),
     fontWeight: '400' as const,
