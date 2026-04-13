@@ -49,7 +49,7 @@ export default function VideoSubmissionScreen() {
       console.log('Submitting video for subject:', selectedSubject);
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      router.push('/teacher/profile-review');
+      router.push('/profile-review');
     } catch (error) {
       Alert.alert('Error', 'Failed to submit video. Please try again.');
     } finally {

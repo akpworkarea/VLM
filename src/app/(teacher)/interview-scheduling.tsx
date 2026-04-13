@@ -46,7 +46,7 @@ export default function InterviewSchedulingScreen() {
   const handleSchedule = () => {
     if (!selectedSlotId) return;
     console.log('Scheduling interview for:', selectedDate, 'at slot:', selectedSlotId);
-    router.push('/teacher/video-submission');
+    router.push('/video-submission');
   };
 
   const Footer = (

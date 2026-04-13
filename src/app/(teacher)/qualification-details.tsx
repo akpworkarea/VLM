@@ -66,7 +66,7 @@ export default function QualificationDetailsScreen() {
 
   const handleContinue = () => {
     console.log('Qualification Details Submitted:', formData);
-    router.push('/teacher/experience-details');
+    router.push('/experience-details');
   };
 
   const Footer = (

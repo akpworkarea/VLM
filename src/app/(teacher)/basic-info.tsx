@@ -46,7 +46,7 @@ export default function BasicInfoScreen() {
 
   const handleContinue = () => {
     console.log('Form Submitted:', formData);
-    router.push('/teacher/qualification-details');
+    router.push('/qualification-details');
   };
 
   const Footer = (

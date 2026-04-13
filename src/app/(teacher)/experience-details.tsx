@@ -81,7 +81,7 @@ export default function ExperienceDetailsScreen() {
 
   const handleSave = () => {
     console.log('Experience Details Saved:', formData);
-    router.push('/teacher/onboarding-flow');
+    router.push('/onboarding-flow');
   };
 
   const Footer = (

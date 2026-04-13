@@ -50,7 +50,7 @@ export default function InterviewConfirmationScreen() {
       />
       <TouchableOpacity 
         style={styles.statusLink}
-        onPress={() => router.push('/teacher/verification-status')}
+        onPress={() => router.push('/verification-status')}
       >
         <ClipboardList size={normalize(16)} color={COLORS.cyan} />
         <Text style={styles.statusLinkText}>View Application Progress</Text>

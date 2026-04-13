@@ -94,7 +94,7 @@ export default function OnboardingFlowScreen() {
       handleStepChange(currentStep + 1);
     } else {
       console.log('Final Submission:', formData);
-      router.push('/teacher/interview-scheduling');
+      router.push('/interview-scheduling');
     }
   };
 
