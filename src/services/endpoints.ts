@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
-   GET_USER: '/user',
+  GET_USER: '/user',
   UPDATE_USER: '/user/update',
   GET_SLOTS: '/slots',
   UPLOAD_VIDEO: '/video/upload',
@@ -16,5 +16,15 @@ export const ENDPOINTS = {
   CREATE_STUDENT_PROFILE: '/student/profile',
   GET_PLANS: '/plans',
   START_TRIAL: '/subscription/trial',
+  GET_CHAPTERS: '/chapters',
+  SUBMIT_DOUBT: '/doubt',
+  START_MATCHING: '/matching/start',
+  GET_MATCH_STATUS: '/matching/status',
+  CANCEL_MATCHING: '/matching/cancel',
+  SEND_AI_MESSAGE: '/ai/chat',
+  GET_CHAT_HISTORY: '/ai/history',
+  GET_MESSAGES: '/chat/messages',
+  SEND_MESSAGE: '/chat/send',
+  UPLOAD_FILE: '/chat/upload',
+  SESSION_STATUS: '/chat/session',
 };
-

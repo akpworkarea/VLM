@@ -11,6 +11,10 @@ interface UserState {
   role: UserRole | null;
   studentProfile: StudentProfile | null;
   selectedPlan: Plan | null;
+  aiCredits: {
+    used: number;
+    total: number;
+  };
   setUser: (user: User) => void;
   setRole: (role: UserRole) => void;
   setStudentProfile: (profile: StudentProfile) => void;
@@ -23,6 +27,10 @@ export const useUserStore = create<UserState>((set) => ({
   role: null,
   studentProfile: null,
   selectedPlan: null,
+  aiCredits: {
+    used: 1250,
+    total: 2000,
+  },
   setUser: (user) => set({ user }),
   setRole: (role) => set({ role }),
   setStudentProfile: (studentProfile) => set({ studentProfile }),
