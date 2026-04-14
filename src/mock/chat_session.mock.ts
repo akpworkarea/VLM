@@ -8,6 +8,7 @@ export const MOCK_SESSION: Session = {
   remainingTime: 445, // 7:25 in seconds
 };
 
+
 export const MOCK_CHAT_MESSAGES: Message[] = [
   {
     id: '1',
